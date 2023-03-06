@@ -1,8 +1,12 @@
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-outline: none !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none !important;
+}
+
+a {
+  text-decoration: none;
 }
 
 html,
@@ -18,7 +22,7 @@ body,
   -webkit-tap-highlight-color: transparent;
   background-color: var(--color-bg-1);
   font-size: 14px;
-  overflow: hidden;
+  overflow: auto;
   position: relative;
 }
 
