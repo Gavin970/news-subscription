@@ -42,7 +42,11 @@
           </div>
         </div>
       </div>
-      <div class="right"></div>
+      <div class="right">
+        <div class="hot-news">
+          <div class="title">热点新闻</div>
+        </div>
+      </div>
     </div>
   </div>
   <login v-if="loginDialog" @close="closeDialog"></login>
