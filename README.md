@@ -1,7 +1,25 @@
-# Vue 3 + Vite
+## usage
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+#### 基于Vue3的新闻订阅系统
 
-## Recommended IDE Setup
+```bash
+npm i pnpm -g
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+pnpm i
+
+pnpm run dev
+```
+
+
+
+# 项目技术构建
+> 基于 Vite + Vue3 + Pinia + Scss的H5页面
+
+### support
+- Vue3
+- Vite
+- Pinia
+- SCSS
+- 集成 Eslint + Stylelint + Prettier 来规范和格式化代码
+- 集成 Mock 辅助开发
+- 集成 element plus UI组件库
