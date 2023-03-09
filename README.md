@@ -1,8 +1,3 @@
-## news-subscription  [![github](https://github.com/Gavin970/news-subscription)
-
-基于Vue3+Vite+Pinia开发的一个新闻订阅系统，集成了Eslint、MockJs和Element plus组件库辅助开发
-
-
 ## usage
 #### 基于Vue3的新闻订阅系统
 
