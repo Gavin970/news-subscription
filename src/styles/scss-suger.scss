@@ -48,6 +48,14 @@ body {
   transform: translate(-50%, -90%);
   z-index: 10;
 }
+.rela-center-50 {
+  //居中定位
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
 /*fixed*/
 .fixed-center-50 {
   //居中定位

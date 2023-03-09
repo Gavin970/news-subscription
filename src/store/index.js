@@ -1,7 +1,9 @@
 import user from './modules/user.js'
+import news from './modules/news.js'
 
-export function useStore() {
+export default function useStore() {
   return {
-    user: user()
+    userStore: user(),
+    newsStore: news()
   }
 }

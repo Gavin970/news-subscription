@@ -1,4 +1,4 @@
-import request from "@/config"
+import request from '@/config'
 
 /**
  * login
@@ -6,7 +6,7 @@ import request from "@/config"
  */
 export const login = (data) => {
   // console.log(111, data)
-  return request.post('/web/api/login', data, {load: true})
+  return request.post('/web/api/login', data, { load: true })
 }
 
 /**
@@ -14,17 +14,16 @@ export const login = (data) => {
  */
 export const logout = () => {
   return request.get('/web/api/logout').then(() => {
-    console.log("logout...")
+    console.log('logout...')
   })
 }
 
-
-/**
- *  getUserMenu
- */
-export const getUserMenu = () => {
-  return request.post('/web/api/user/getUserMenu').then((res) => {
-    return res
-    console.log('getUserMenu...')
-  })
-}
+// /**
+//  *  getUserMenu
+//  */
+// export const getUserMenu = () => {
+//   return request.post('/web/api/user/getUserMenu').then((res) => {
+//     return res
+//     console.log('getUserMenu...')
+//   })
+// }

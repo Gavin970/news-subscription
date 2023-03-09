@@ -19,7 +19,6 @@ const Routers = [
     name: 'Complaint',
     component: () => import('@/views/home/components/complaint.vue')
   }
-
 ]
 
 export default Routers

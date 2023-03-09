@@ -1,4 +1,4 @@
-import request from "@/config"
+import request from '@/config'
 
 /**
  * 请求超时
@@ -6,7 +6,7 @@ import request from "@/config"
  */
 export const requestTimeout = (data) => {
   // console.log(111, data)
-  return request.post('/web/api/timeout', data, {load: true})
+  return request.post('/web/api/timeout', data, { load: true })
 }
 
 /**
@@ -25,5 +25,5 @@ export const request404 = (data) => {
  */
 export const requestDelay = (data) => {
   // console.log(111, data)
-  return request.post('/web/api/delay', data, {load: true})
+  return request.post('/web/api/delay', data, { load: true })
 }

@@ -1,4 +1,4 @@
-import type {MockMethod} from 'vite-plugin-mock'
+import type { MockMethod } from 'vite-plugin-mock'
 
 const menus = [
   {
@@ -46,7 +46,7 @@ export default [
   {
     url: '/web/api/login',
     method: 'post',
-    response: ({body}) => {
+    response: ({ body }) => {
       if (body.userName === admin.userName && body.password === admin.password) {
         return {
           code: 0,
@@ -69,19 +69,18 @@ export default [
             type: user.type
           }
         }
-      } else {
-        return {
-          code: 700,
-          msg: '账号密码错误',
-          data: {}
-        }
+      }
+      return {
+        code: 700,
+        msg: '账号密码错误',
+        data: {}
       }
     }
   },
   {
     url: '/web/api/logout',
     method: 'get',
-    response: ({body}) => {
+    response: ({ body }) => {
       return {
         code: 0,
         msg: 'success',
@@ -92,7 +91,7 @@ export default [
   {
     url: '/web/api/test',
     method: 'get',
-    response: ({body}) => {
+    response: ({ body }) => {
       return {
         code: 0,
         msg: 'success',
@@ -108,7 +107,7 @@ export default [
   {
     url: '/web/api/user/getUserMenu',
     method: 'post',
-    response: ({body}) => {
+    response: ({ body }) => {
       return {
         code: 0,
         msg: 'success',
@@ -119,7 +118,7 @@ export default [
   {
     url: '/web/api/user/resource',
     method: 'get',
-    response: ({body}) => {
+    response: ({ body }) => {
       return {
         code: 0,
         msg: 'success',

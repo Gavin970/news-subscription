@@ -1,10 +1,10 @@
-import CreateAxiosInstance from "@/service/request";
-import {ElLoading, ElMessage} from 'element-plus'
+import CreateAxiosInstance from '@/service/request'
+import { ElLoading, ElMessage } from 'element-plus'
 
 const request = new CreateAxiosInstance({
   baseURL: '',
   timeout: 5000,
-  headers: {'makabaka': 1127},
+  headers: { makabaka: 1127 },
   load: false
 })
 
@@ -44,7 +44,7 @@ request.requestStart = (config) => {
         background: 'rgba(0, 0, 0, 0.05)'
       })
     }
-    requestNum += 1;
+    requestNum += 1
   }
 }
 
@@ -59,21 +59,20 @@ request.requestEnd = (config) => {
 
 request.dataFactory = (res) => {
   if (res.status === 200 && res.data) {
-    const {code, data, msg} = res.data
+    const { code, data, msg } = res.data
     if (code === 0) {
-      return data;
-    } else {
-      ElMessage.error(msg)
-      return Promise.reject(res.data)
+      return data
     }
+    ElMessage.error(msg)
+    return Promise.reject(res.data)
   }
-  Promise.reject({message: ErrMessageInfo.errorMessage})
+  Promise.reject({ message: ErrMessageInfo.errorMessage })
 }
 request.requestError = (error) => {
-  const {response, code, message} = error || {}
+  const { response, code, message } = error || {}
   if (code === 'ECONNABORTED' && message.indexOf('timeout') !== -1) {
     ElMessage.error('请求超时')
-    return Promise.reject({message: ErrMessageInfo.apiTimeoutMessage})
+    return Promise.reject({ message: ErrMessageInfo.apiTimeoutMessage })
   }
   if (response) {
     const errMessage = checkStatus(response.status)

@@ -1,11 +1,11 @@
-import type {MockMethod} from 'vite-plugin-mock'
+import type { MockMethod } from 'vite-plugin-mock'
 
 export default [
   {
     url: '/web/api/timeout',
     method: 'post',
     timeout: 10000,
-    response: ({body}) => {
+    response: ({ body }) => {
       console.log(body)
       return {
         code: 0,
@@ -22,7 +22,7 @@ export default [
     url: '/web/api/delay',
     method: 'post',
     timeout: 3000,
-    response: ({body}) => {
+    response: ({ body }) => {
       console.log(body)
       return {
         code: 0,
@@ -34,5 +34,5 @@ export default [
         }
       }
     }
-  },
+  }
 ] as MockMethod[]

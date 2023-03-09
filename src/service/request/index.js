@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 
 /**
  * @description: request method
@@ -18,19 +18,21 @@ export default class CreateAxiosInstance {
     })
 
     this.instance.interceptors.request.use(
-      config => {
+      (config) => {
         this.requestStart && this.requestStart(config)
         return config
-      }, error => {
+      },
+      (error) => {
         return Promise.reject(error)
       }
     )
 
     this.instance.interceptors.response.use(
-      res => {
+      (res) => {
         this.requestEnd && this.requestEnd(res.config)
         return this.dataFactory && this.dataFactory(res)
-      }, error => {
+      },
+      (error) => {
         if (error.config) {
           this.requestEnd && this.requestEnd(error.config)
         }
@@ -54,10 +56,10 @@ export default class CreateAxiosInstance {
   }
 
   get(url, data, config) {
-    return this.request(url, data, {...config, method: RequestEnum.GET})
+    return this.request(url, data, { ...config, method: RequestEnum.GET })
   }
 
   post(url, data, config) {
-    return this.request(url, data, {...config, method: RequestEnum.POST})
+    return this.request(url, data, { ...config, method: RequestEnum.POST })
   }
 }

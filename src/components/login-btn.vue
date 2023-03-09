@@ -4,10 +4,10 @@
 
 <script setup>
 import api from '@/api'
-import router from "../router/index.js";
-import {useStore} from "@/store";
+import router from '../router/index.js'
+import { useStore } from '@/store'
 
-const store = useStore();
+const store = useStore()
 
 const props = defineProps({
   userName: {
@@ -21,24 +21,24 @@ const props = defineProps({
 })
 
 function login() {
-  api.user.login({
-    userName: props.userName,
-    password: props.password
-  }).then(
-    res => {
-      console.log('res：', res)
-      store.user.setUserInfo(res)
-      localStorage.setItem('token', res.token)
-      localStorage.setItem('type', res.type)
-      router.push({name: 'Home'})
-    },
-    err => {
-      console.error(err.message);
-    }
-  )
+  api.user
+    .login({
+      userName: props.userName,
+      password: props.password
+    })
+    .then(
+      (res) => {
+        console.log('res：', res)
+        store.user.setUserInfo(res)
+        localStorage.setItem('token', res.token)
+        localStorage.setItem('type', res.type)
+        router.push({ name: 'Home' })
+      },
+      (err) => {
+        console.error(err.message)
+      }
+    )
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

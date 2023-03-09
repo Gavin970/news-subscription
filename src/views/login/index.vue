@@ -9,8 +9,8 @@
     </div>
     <div class="iptItem columnSS">
       <div class="sub">账号密码登录</div>
-      <input v-model="userInfo.phone" class="ipt mt-1" placeholder="请输入账号：" type="tel" autocomplete="tel"/>
-      <input v-model="userInfo.password" class="ipt mt-1" placeholder="请输入密码：" type="password"/>
+      <input v-model="userInfo.phone" class="ipt mt-1" placeholder="请输入账号：" type="tel" autocomplete="tel" />
+      <input v-model="userInfo.password" class="ipt mt-1" placeholder="请输入密码：" type="password" />
       <div class="toSubmit change" @click="isLogin = !isLogin">还没有账号？立即注册</div>
       <div class="loginBtn" :class="allowLogin(userInfo.phone, userInfo.password)">登录</div>
     </div>
@@ -53,7 +53,7 @@ const userInfo = reactive({
   username: '',
   gender: 0
 })
-let isLogin = ref(true)
+const isLogin = ref(true)
 const $emit = defineEmits(['close'])
 
 // 关闭登录注册弹窗
@@ -75,17 +75,16 @@ const allowLogin = (phone, password) => {
     return 'allow'
   }
 }
-
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .mark {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 998;
 }
 .login-dialog {
@@ -105,7 +104,7 @@ const allowLogin = (phone, password) => {
 .title {
   padding: 0 20px;
   height: 80px;
-  border-bottom: 2px solid rgba(0,0,0,0.05);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.05);
   .text {
     font-size: 24px;
   }
@@ -170,7 +169,7 @@ const allowLogin = (phone, password) => {
     line-height: 45px;
     text-align: center;
     color: #fff;
-    background-color: rgba(240,65,66,.5);
+    background-color: rgba(240, 65, 66, 0.5);
     border-radius: 8px;
   }
   .submit {
