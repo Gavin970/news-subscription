@@ -10,7 +10,10 @@
   </div>
   <div class="news">
     <div class="title">{{ newsItem.title }}</div>
-    <div class="info">{{ newsItem.date }} · {{ newsItem.author }}</div>
+    <div class="info rowSC">
+      {{ newsItem.date }} · {{ newsItem.author }}
+      <div class="subscribe">订阅</div>
+    </div>
     <div class="content">{{ newsItem.content }}</div>
   </div>
 
@@ -70,6 +73,14 @@ const closeDialog = () => {
   .info {
     margin: 20px 0 20px 20px;
     color: #666;
+    .subscribe {
+      margin-left: 10px;
+      width: 50px;
+      text-align: center;
+      border-radius: 5px;
+      background-color: #ddd;
+      cursor: pointer;
+    }
   }
   .content {
     font-size: 18px;
