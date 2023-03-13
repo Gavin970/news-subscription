@@ -23,6 +23,11 @@ const Routers = [
     path: '/mySubscribe',
     name: 'MySubscribe',
     component: () => import('@/views/control/my-subscribe/index.vue')
+  },
+  {
+    path: '/newsDetail',
+    name: 'NewsDetail',
+    component: () => import('@/views/home/components/news-detail.vue')
   }
 ]
 

@@ -9,9 +9,9 @@
       </div>
       <div class="bar rowBC">
         <div class="left rowSC">
-          <router-link class="item" to="/about">关于我们</router-link>
-          <router-link class="item" to="/feedback">反馈</router-link>
-          <router-link class="item" to="/complaint">投诉举报</router-link>
+          <router-link class="rtlk" to="/about">关于我们</router-link>
+          <router-link class="rtlk" to="/feedback">反馈</router-link>
+          <router-link class="rtlk" to="/complaint">投诉举报</router-link>
         </div>
         <login-btn :user="user" @showDialog="showDialog"></login-btn>
       </div>
@@ -21,30 +21,37 @@
     </div>
     <div class="content rowBS">
       <div class="left columnSS">
-        <div class="nav rowBC">
-          <div class="channel" :class="checkIndex === -2 ? 'checked' : ''" @click="check(-2)">已订阅</div>
-          <div class="channel" :class="checkIndex === -1 ? 'checked' : ''" @click="check(-1)">推荐</div>
-          <div
-            v-for="(item, index) in newsStore.channel"
-            :key="item.id"
-            class="channel"
-            :class="checkIndex === index ? 'checked' : ''"
-            @click="check(index)"
-          >
-            {{ item.name }}
-          </div>
-          <div class="channel">更多</div>
-        </div>
+        <nav-bar></nav-bar>
+        <!--        <div class="nav rowBC">-->
+        <!--          <div class="channel" :class="checkIndex === -2 ? 'checked' : ''" @click="check(-2)">已订阅</div>-->
+        <!--          <div class="channel" :class="checkIndex === -1 ? 'checked' : ''" @click="check(-1)">推荐</div>-->
+        <!--          <div-->
+        <!--            v-for="(item, index) in newsStore.channel"-->
+        <!--            :key="item.id"-->
+        <!--            class="channel"-->
+        <!--            :class="checkIndex === index ? 'checked' : ''"-->
+        <!--            @click="check(index)"-->
+        <!--          >-->
+        <!--            {{ item.name }}-->
+        <!--          </div>-->
+        <!--          <div class="channel">更多</div>-->
+        <!--        </div>-->
         <div class="news">
           <div v-for="(item, index) in newsStore.newsInfo" :key="index" class="news-item">
-            <div class="title">{{ item.title }}</div>
+            <!--            <div class="title">{{ item.title }}</div>-->
+            <router-link class="rtlk" :to="{ path: '/newsDetail', query: item }">{{ item.title }}</router-link>
             <div class="author">{{ item.author }}</div>
           </div>
         </div>
       </div>
       <div class="right">
-        <div class="hot-news">
+        <div class="hot-news rowSC">
+          <div class="ico"></div>
           <div class="title">热点新闻</div>
+        </div>
+        <div v-for="(item, index) in newsStore.newsInfo" :key="index" class="news-item rowSS">
+          <div :class="rankColor(index)" class="rank">{{ index + 1 }}</div>
+          <router-link class="rtlk" :to="{ path: '/newsDetail', query: item }">{{ item.title }}</router-link>
         </div>
       </div>
     </div>
@@ -55,12 +62,13 @@
 <script setup>
 import Login from '@/views/login/index.vue'
 import LoginBtn from '@/views/home/components/login-btn.vue'
+import NavBar from './components/nav-bar.vue'
 import useStore from '@/store'
 
 const { newsStore } = useStore()
 
 const loginDialog = ref(false)
-const checkIndex = ref(-1)
+
 const user = ref('')
 
 onMounted(() => {
@@ -70,8 +78,17 @@ const showDialog = (value) => {
   loginDialog.value = value
 }
 
-const check = (index) => {
-  checkIndex.value = index
+const rankColor = (index) => {
+  switch (index) {
+    case 0:
+      return 'first'
+    case 1:
+      return 'second'
+    case 2:
+      return 'third'
+    default:
+      return 'other'
+  }
 }
 
 const closeDialog = () => {
@@ -122,7 +139,7 @@ const closeDialog = () => {
     z-index: 2;
 
     .left {
-      .item {
+      .rtlk {
         margin-right: 36px;
         font-size: 16px;
         color: #fff;
@@ -140,40 +157,26 @@ const closeDialog = () => {
   padding: 16px;
   width: 1066px;
   font-size: 20px;
+
+  .rtlk {
+    color: #000;
+  }
+  .rtlk:hover {
+    color: #f04142;
+  }
   .left {
     width: 676px;
-    .nav {
-      width: 100%;
-    }
-    .channel {
-      cursor: pointer;
-    }
-    .checked {
-      position: relative;
-      color: #f04142;
-    }
-    .checked:after {
-      position: absolute;
-      top: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 16px;
-      height: 3px;
-      background-color: #f04142;
-      content: '';
-    }
+
     .news {
       margin-top: 25px;
 
       &-item {
+        height: 60px;
         margin-bottom: 20px;
       }
       .title {
         padding: 10px 0;
         cursor: pointer;
-      }
-      .title:hover {
-        color: #f04142;
       }
       .author {
         font-size: 14px;
@@ -181,8 +184,38 @@ const closeDialog = () => {
     }
   }
   .right {
+    margin-top: 30px;
     width: 318px;
     height: 100px;
+    .ico {
+      width: 20px;
+      height: 20px;
+      background-image: url('./src/assets/hot-ico.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .news-item {
+      margin-top: 10px;
+      font-size: 16px;
+
+      .rank {
+        margin-right: 10px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .first {
+        color: #a82e2e;
+      }
+      .second {
+        color: #f04142;
+      }
+      .third {
+        color: #ff9a03;
+      }
+      .other {
+        color: #999;
+      }
+    }
   }
 }
 </style>
