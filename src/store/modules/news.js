@@ -58,14 +58,27 @@ const newsInfo = [
   }
 ]
 
+const mySubscribe = [
+  { id: 1, name: '新华社', headUrl: './src/assets/user.png', isSubscribe: true },
+  { id: 2, name: '澎湃新闻', headUrl: './src/assets/user.png', isSubscribe: true },
+  { id: 3, name: '中工网', headUrl: './src/assets/user.png', isSubscribe: true }
+]
+const myCollect = []
+
 export default defineStore({
   id: 'news',
   state: () => {
     return {
       channel,
-      newsInfo
+      newsInfo,
+      mySubscribe,
+      myCollect
     }
   },
   getters: {},
-  actions: {}
+  actions: {
+    setMySubscribeInfo(val) {
+      this.mySubscribe[val.index].isSubscribe = val.isSubscribe
+    }
+  }
 })

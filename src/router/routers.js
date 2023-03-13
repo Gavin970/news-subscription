@@ -18,6 +18,11 @@ const Routers = [
     path: '/complaint',
     name: 'Complaint',
     component: () => import('@/views/home/components/complaint.vue')
+  },
+  {
+    path: '/mySubscribe',
+    name: 'MySubscribe',
+    component: () => import('@/views/control/my-subscribe/index.vue')
   }
 ]
 

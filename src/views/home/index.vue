@@ -13,7 +13,7 @@
           <router-link class="item" to="/feedback">反馈</router-link>
           <router-link class="item" to="/complaint">投诉举报</router-link>
         </div>
-        <div class="login" @click="loginDialog = true">登录</div>
+        <login-btn :user="user" @showDialog="showDialog"></login-btn>
       </div>
       <div class="center-50">
         <div class="title">新闻订阅系统</div>
@@ -54,11 +54,21 @@
 
 <script setup>
 import Login from '@/views/login/index.vue'
+import LoginBtn from '@/views/home/components/login-btn.vue'
 import useStore from '@/store'
+
 const { newsStore } = useStore()
 
 const loginDialog = ref(false)
 const checkIndex = ref(-1)
+const user = ref('')
+
+onMounted(() => {
+  user.value = localStorage.getItem('phone') || ''
+})
+const showDialog = (value) => {
+  loginDialog.value = value
+}
 
 const check = (index) => {
   checkIndex.value = index
@@ -66,6 +76,7 @@ const check = (index) => {
 
 const closeDialog = () => {
   loginDialog.value = false
+  user.value = localStorage.getItem('phone') || ''
   console.log(newsStore.channel)
 }
 </script>
@@ -116,15 +127,6 @@ const closeDialog = () => {
         font-size: 16px;
         color: #fff;
       }
-    }
-    .login {
-      width: 50px;
-      height: 30px;
-      line-height: 30px;
-      text-align: center;
-      background-color: #2d8cf0;
-      border-radius: 6px;
-      cursor: pointer;
     }
   }
   .title {

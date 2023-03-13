@@ -12,7 +12,7 @@
       <input v-model="userInfo.phone" class="ipt mt-1" placeholder="请输入账号：" type="tel" autocomplete="tel" />
       <input v-model="userInfo.password" class="ipt mt-1" placeholder="请输入密码：" type="password" />
       <div class="toSubmit change" @click="isLogin = !isLogin">还没有账号？立即注册</div>
-      <div class="loginBtn" :class="allowLogin(userInfo.phone, userInfo.password)">登录</div>
+      <div class="loginBtn" :class="allowLogin(userInfo.phone, userInfo.password)" @click="login">登录</div>
     </div>
   </div>
   <div v-if="!isLogin" class="submit-dialog center-50">
@@ -41,12 +41,14 @@
         </div>
       </div>
       <div class="toLogin change" @click="isLogin = !isLogin">已有账号？立即登录</div>
-      <div class="loginBtn submit" :class="allowLogin(userInfo.phone, userInfo.password)">注册</div>
+      <div class="loginBtn submit" :class="allowLogin()">注册</div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { defineEmits } from 'vue'
+
 const userInfo = reactive({
   phone: '',
   password: '',
@@ -54,7 +56,14 @@ const userInfo = reactive({
   gender: 0
 })
 const isLogin = ref(true)
+
 const $emit = defineEmits(['close'])
+
+// 登录逻辑
+const login = () => {
+  localStorage.setItem('phone', userInfo.phone)
+  closeDialog()
+}
 
 // 关闭登录注册弹窗
 const closeDialog = () => {
@@ -70,8 +79,8 @@ const clearInfo = () => {
   userInfo.gender = 0
 }
 
-const allowLogin = (phone, password) => {
-  if (phone && password) {
+const allowLogin = () => {
+  if (userInfo.phone && userInfo.password) {
     return 'allow'
   }
 }
@@ -171,6 +180,7 @@ const allowLogin = (phone, password) => {
     color: #fff;
     background-color: rgba(240, 65, 66, 0.5);
     border-radius: 8px;
+    cursor: pointer;
   }
   .submit {
     margin-left: 70px;
